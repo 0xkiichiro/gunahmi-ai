@@ -10,6 +10,7 @@ class OpenAIClient:
         except Exception as e:
             print(f"Error: {e}")
 
+
     def load_data(self, wanted_token_count):
         try:
             with open("./sources/quran.txt", "r") as source:
