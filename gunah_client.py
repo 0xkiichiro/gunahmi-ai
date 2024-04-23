@@ -4,9 +4,9 @@ import tiktoken
 
 
 class OpenAIClient:
-    def __init__(self):
+    def __init__(self, api_key=os.environ.get("OPENAI_API_KEY")):
         try:
-            self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+            self.client = OpenAI(api_key=api_key)
         except Exception as e:
             print(f"Error: {e}")
 
