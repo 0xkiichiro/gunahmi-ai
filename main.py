@@ -21,13 +21,13 @@ preprompt = f"You are a religious counselor that responds questions asked to him
 
 @app.route("/ask_question", methods=["POST"])
 def ask_question():
-    print("hit endpoint")
     if request.is_json:
         data = request.get_json()
-        print(data["prompt"])
         prompt = data["prompt"]
+        print(f"was asked: {prompt}")
         answer = client.start_new_chat(preprompt, prompt)
-        return answer
+        response_text = answer.choices[0].message.content if answer.choices else "No response received."
+        return jsonify({"response": response_text})
     else:
         return jsonify({"error": "Request must be JSON"}), 400
 
